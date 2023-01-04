@@ -39,7 +39,7 @@ class UcutManager:
             })
 
     # TODO: link 가져오기 sdk
-    def getLink(self, key: str = None, alias: str = None, origin: str = None):
+    def getLink(self, key: str = None, alias: str = None, origin: str = None, origin__contains: str = None):
         params = {}
         if key != None:
             params["key"] = key
@@ -47,6 +47,8 @@ class UcutManager:
             params["alias"] = alias
         if origin != None:
             params["origin"] = origin
+        if origin__contains != None:
+            params["origin__contains"] = origin__contains
 
         return requests.get("{BASE_URL}/{PATH}/".format(
             BASE_URL=self.BASE_URL, PATH="link"
@@ -65,5 +67,3 @@ class UcutManager:
                 'X-Api-Key': self._api_key,
                 'X-Password': password
             })
-
-
